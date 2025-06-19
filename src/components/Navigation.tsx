@@ -4,8 +4,8 @@ const Navigation = () => {
   const location = useLocation();
 
   const navigationItems = [
-    { path: '/', label: 'Welcome', icon: '🏠' },
-    { path: '/home', label: 'Home', icon: '🚀' }
+    { path: '/', label: 'Features', icon: '⚡' },
+    { path: '/home', label: 'How It Works', icon: '🔄' }
   ];
 
   const isActive = (path: string) => {
@@ -13,7 +13,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="bg-gray-900/95 backdrop-blur-sm border-b border-gray-700 sticky top-0 z-50 shadow-lg">
+    <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -21,11 +21,11 @@ const Navigation = () => {
             to="/" 
             className="flex items-center space-x-3 hover:scale-105 transition-transform duration-200"
           >
-            <div className="w-10 h-10 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
-              R
+            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg">
+              P
             </div>
-            <span className="text-white font-bold text-xl">
-              React App
+            <span className="text-gray-900 font-bold text-xl">
+              PayWise
             </span>
           </Link>
 
@@ -37,8 +37,8 @@ const Navigation = () => {
                 to={item.path}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   isActive(item.path)
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg transform scale-105'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-700/50 hover:scale-105'
+                    ? 'bg-blue-600 text-white shadow-lg transform scale-105'
+                    : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:scale-105'
                 }`}
               >
                 <span className="text-lg">{item.icon}</span>
@@ -47,12 +47,10 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile menu button (future enhancement) */}
-          <div className="md:hidden">
-            <button className="text-gray-300 hover:text-white transition-colors duration-200">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+          {/* Get Started Button */}
+          <div className="flex items-center space-x-4">
+            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300">
+              Get Started
             </button>
           </div>
         </div>
