@@ -9,7 +9,7 @@ const ContactUsPage = () => {
     message: ''
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -23,7 +23,7 @@ const ContactUsPage = () => {
     e.preventDefault();
     // Here you would typically send the data to your backend
     console.log('Form submitted:', formData);
-    setIsSubmitted(true);
+    setShowSuccessModal(true);
     // Reset form after submission
     setFormData({
       name: '',
@@ -32,11 +32,6 @@ const ContactUsPage = () => {
       subject: '',
       message: ''
     });
-    
-    // Reset success message after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 3000);
   };
 
   return (
@@ -126,16 +121,7 @@ const ContactUsPage = () => {
           <div>
             <h2 className="text-3xl font-bold text-neutral-900 mb-6">Send Us a Message</h2>
             <div className="bg-white rounded-xl shadow-lg p-8">
-              {isSubmitted && (
-                <div className="mb-6 p-4 bg-web-green-50 border border-web-green-200 rounded-lg">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-web-green-600 text-xl">✓</span>
-                    <p className="text-web-green-700 font-medium">
-                      Thank you! Your message has been sent successfully. We'll get back to you soon.
-                    </p>
-                  </div>
-                </div>
-              )}
+
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -241,6 +227,29 @@ const ContactUsPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 transform transition-all">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-web-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-3xl text-web-green-600">✓</span>
+              </div>
+              <h3 className="text-2xl font-bold text-neutral-900 mb-4">Message Sent Successfully!</h3>
+              <p className="text-neutral-600 mb-6">
+                Thank you for contacting us. We've received your message and will get back to you within 24 hours during business days.
+              </p>
+              <button
+                onClick={() => setShowSuccessModal(false)}
+                className="w-full bg-web-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-web-green-700 focus:ring-2 focus:ring-web-green-500 focus:ring-offset-2 transition-all duration-300"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
