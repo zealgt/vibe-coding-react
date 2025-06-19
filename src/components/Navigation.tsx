@@ -5,7 +5,8 @@ const Navigation = () => {
 
   const navigationItems = [
     { path: '/', label: 'Features', icon: '⚡' },
-    { path: '/home', label: 'How It Works', icon: '🔄' }
+    { path: '/home', label: 'How It Works', icon: '🔄' },
+    { path: '/contact', label: 'Contact Us', icon: '📞' }
   ];
 
   const isActive = (path: string) => {
